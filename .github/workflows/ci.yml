@@ -72,8 +72,9 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Laravel Dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-stability }} --prefer-dist --no-interaction --no-suggest
+          composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+#          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+#          composer update --${{ matrix.dependency-stability }} --prefer-dist --no-interaction --no-suggest
 
       - name: Update Dependencies with latest stable
         if: matrix.dependency-stability == 'prefer-stable'
