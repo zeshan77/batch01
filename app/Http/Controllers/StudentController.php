@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateStudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -9,8 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::where('age', '>=', 25)
-            ->orderBy('age', 'desc')
+        $students = Student::orderBy('age', 'desc')
             ->get();
 
         return view('students.index', [
@@ -23,7 +23,7 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateStudentRequest $request)
     {
         Student::create([
             'name' => $request->name,
