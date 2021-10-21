@@ -36,18 +36,16 @@ class StudentController extends Controller
         return redirect('/students');
     }
 
-    public function edit($studentID)
+    public function edit(Student $student)
     {
-        $student = Student::find($studentID);
-
         return view('students.edit', [
             'student' => $student,
         ]);
     }
 
-    public function update($studentID, Request $request)
+    public function update(Student $student, CreateStudentRequest $request)
     {
-        Student::where('id', $studentID)->update([
+        Student::where('id', $student->id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'age' => $request->age,

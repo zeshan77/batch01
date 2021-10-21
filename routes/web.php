@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Middleware\AgeMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('/contact', [PagesController::class, 'contact']);
 Route::get('/home', [PagesController::class, 'home']);
+
 
 Route::get('students', [StudentController::class, 'index']);
 Route::post('students', [StudentController::class, 'store']);
