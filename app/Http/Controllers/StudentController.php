@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStudentRequest;
+use App\Models\Batch;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::orderBy('age', 'desc')
+        $students = Student::with('batch')
+            ->orderBy('age', 'desc')
             ->get();
 
         return view('students.index', [
@@ -20,7 +22,9 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('students.create');
+        return view('students.create', [
+            'batches' => Batch::all(),
+        ]);
     }
 
     public function store(CreateStudentRequest $request)
@@ -31,6 +35,7 @@ class StudentController extends Controller
             'age' => $request->age,
             'roll_no' => $request->roll_no,
             'address' => $request->address,
+            'batch_id' => $request->batch_id,
         ]);
 
         return redirect('/students');

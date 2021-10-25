@@ -17,6 +17,21 @@
         <form action="/students" method="post">
             @csrf
             @method('post')
+
+            <div class="form-group">
+                <label>Batch</label>
+                <select name="batch_id" class="form-control">
+                    <option value="">Choose batch</option>
+                    @foreach($batches as $batch)
+                        <option value="{{ $batch->id }}">{{ $batch->name }}</option>
+                    @endforeach
+                </select>
+
+                @error('batch_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" value="{{ old('name') }}">

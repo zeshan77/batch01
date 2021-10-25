@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\AgeMiddleware;
@@ -29,3 +30,12 @@ Route::post('students', [StudentController::class, 'store']);
 Route::get('students/create', [StudentController::class, 'create']);
 Route::get('students/{student}/edit', [StudentController::class, 'edit']);
 Route::put('/students/{student}', [StudentController::class, 'update']);
+
+Route::group(['prefix' => 'batches',], function() {
+    Route::get('', [BatchController::class, 'index']);
+    Route::post('', [BatchController::class, 'store']);
+    Route::get('create', [BatchController::class, 'create']);
+    Route::get('{batch}/show', [BatchController::class, 'show']);
+    Route::get('{batch}/edit', [BatchController::class, 'edit']);
+    Route::put('{batch}', [BatchController::class, 'update']);
+});

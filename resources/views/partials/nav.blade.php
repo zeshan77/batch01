@@ -7,6 +7,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="/home">Home</a>
             <a class="nav-item nav-link" href="/contact">Contact</a>
+            <a class="nav-item nav-link" href="/batches">Batches</a>
             <a class="nav-item nav-link" href="/students">Students</a>
         </div>
     </div>
