@@ -8,6 +8,16 @@
             @csrf
             @method('put')
             <div class="form-group">
+                <label>Associated batch</label>
+                <select class="form-control" name="batch_id">
+                    <option value="">Choose batch</option>
+                    @foreach($batches as $batch)
+                        <option value="{{ $batch->id }}" {{ optional($student->batch)->id == $batch->id ? 'selected' : '' }}>{{ $batch->name }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" value="{{ $student->name }}">
             </div>

@@ -43,19 +43,24 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
+        $student->load('batch');
+
         return view('students.edit', [
             'student' => $student,
+            'batches' => Batch::all(),
         ]);
     }
 
     public function update(Student $student, CreateStudentRequest $request)
     {
-        Student::where('id', $student->id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'age' => $request->age,
-            'roll_no' => $request->roll_no,
-            'address' => $request->address,
+        Student::where('id', $student->id)
+            ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'age' => $request->age,
+                'roll_no' => $request->roll_no,
+                'address' => $request->address,
+                'batch_id' => $request->batch_id,
         ]);
 
         return redirect('/students');
