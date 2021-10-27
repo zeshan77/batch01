@@ -12,6 +12,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('batch')
+            ->with('profile')
             ->orderBy('age', 'desc')
             ->get();
 
@@ -29,7 +30,7 @@ class StudentController extends Controller
 
     public function store(CreateStudentRequest $request)
     {
-        Student::create([
+        $student = Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'age' => $request->age,
@@ -37,6 +38,14 @@ class StudentController extends Controller
             'address' => $request->address,
             'batch_id' => $request->batch_id,
         ]);
+
+        $student
+            ->profile()
+            ->create([
+                'gender' => $request->gender,
+                'phone_number' => $request->phone_number,
+                'blood_group' => $request->blood_group,
+            ]);
 
         return redirect('/students');
     }

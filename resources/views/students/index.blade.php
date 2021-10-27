@@ -12,8 +12,9 @@
                     <th>Batch</th>
                     <th>Email</th>
                     <th>Age</th>
+                    <th>Phone</th>
+                    <th>Blood group</th>
                     <th>Roll No</th>
-                    <th>Address</th>
                     <th>Created On</th>
                     <th>Actions</th>
                 </tr>
@@ -26,8 +27,9 @@
                         <td>{{ optional($student->batch)->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->age }}</td>
+                        <td>{{ optional($student->profile)->phone_number }}</td>
+                        <td>{{ optional($student->profile)->blood_group }}</td>
                         <td>{{ $student->roll_no }}</td>
-                        <td>{{ $student->address }}</td>
                         <td>{{ $student->created_at }}</td>
                         <td>
                             <a href="/students/{{ $student->id }}/edit">Edit</a>

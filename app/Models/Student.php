@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -24,5 +25,10 @@ class Student extends Model
     public function batch(): BelongsTo
     {
         return $this->belongsTo(Batch::class, 'batch_id', 'id');
+    }
+
+    public function profile(): hasOne
+    {
+        return $this->hasOne(Profile::class);
     }
 }
