@@ -31,4 +31,9 @@ class Student extends Model
     {
         return $this->hasOne(Profile::class);
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
 }

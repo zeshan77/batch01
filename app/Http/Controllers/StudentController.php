@@ -53,6 +53,7 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $student->load('batch');
+        $student->load('profile');
 
         return view('students.edit', [
             'student' => $student,
@@ -71,6 +72,23 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'batch_id' => $request->batch_id,
         ]);
+
+        $student->profile()->delete();
+
+        $student->profile()->create([
+            'gender' => $request->gender,
+            'phone_number' => $request->phone_number,
+            'blood_group' => $request->blood_group,
+        ]);
+
+        return redirect('/students');
+    }
+
+    public function destroy(Student $student)
+    {
+        $student->profile()->delete();
+
+        $student->delete();
 
         return redirect('/students');
     }

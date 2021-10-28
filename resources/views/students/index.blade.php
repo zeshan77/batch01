@@ -32,7 +32,8 @@
                         <td>{{ $student->roll_no }}</td>
                         <td>{{ $student->created_at }}</td>
                         <td>
-                            <a href="/students/{{ $student->id }}/edit">Edit</a>
+                            <a href="/students/{{ $student->id }}/edit">Edit</a> -
+                            <a href="/students/{{ $student->id }}/delete">Delete</a>
                         </td>
                     </tr>
                 @empty
