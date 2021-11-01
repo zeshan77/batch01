@@ -49,4 +49,6 @@ Route::group(['prefix' => 'groups',], function() {
     Route::get('{group}/show', [GroupController::class, 'show']);
     Route::get('{group}/edit', [GroupController::class, 'edit']);
     Route::put('{group}', [GroupController::class, 'update']);
+    Route::get('{group}/assign-students', [GroupController::class, 'assignStudents']);
+    Route::patch('{group}', [GroupController::class, 'storeAssignStudents']);
 });
