@@ -4,6 +4,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SwitchLanguageController;
 use App\Http\Middleware\AgeMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +53,5 @@ Route::group(['prefix' => 'groups',], function() {
     Route::get('{group}/assign-students', [GroupController::class, 'assignStudents']);
     Route::patch('{group}', [GroupController::class, 'storeAssignStudents']);
 });
+
+Route::get('locales/{locale}', [SwitchLanguageController::class, 'switch']);
