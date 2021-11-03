@@ -3,3 +3,4 @@
 storage/logs
 .phpunit.result.cache
 .env
+node_modules
