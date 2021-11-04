@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SwitchLanguageController;
@@ -55,8 +57,19 @@ Route::group(['prefix' => 'groups',], function() {
 
 Route::get('locales/{locale}', [SwitchLanguageController::class, 'switch']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/accounts', [AccountController::class, 'index'])
+        ->name('accounts');
+
+    Route::get('/operations', [OperationController::class, 'index'])
+        ->name('operations');
+});
+
 
 require __DIR__.'/auth.php';

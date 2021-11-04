@@ -15,6 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('viewAny', App\Models\Account::class)
+                        <x-nav-link :href="route('accounts')" :active="request()->routeIs('accounts')">
+                            {{ __('Accounts') }}
+    `                    </x-nav-link>
+                    @endcan
+                    <x-nav-link :href="route('operations')" :active="request()->routeIs('operations')">
+                        {{ __('Operations') }}
+                    </x-nav-link>
                 </div>
             </div>
 
